@@ -12,15 +12,15 @@ public class CipherBox extends Frame implements ActionListener {
 	private Decoder d;
 	
 	public CipherBox() {
-		/* Set up layout for the cipher box gui */
-		Panel displayPanel = new Panel(new FlowLayout());
-		Panel outPanel = new Panel(new FlowLayout());
-		Panel buttonPanel = new Panel(new FlowLayout());
-		setLayout(new FlowLayout());
+	    /* Set up layout for the cipher box gui */
+	    Panel displayPanel = new Panel(new FlowLayout());
+	    Panel outPanel = new Panel(new FlowLayout());
+	    Panel buttonPanel = new Panel(new FlowLayout());
+	    setLayout(new FlowLayout());
 		
-		/* Input */
-		displayPanel.add(new Label("Input"));
-		taInput = new TextArea("", 5, 50); 
+	    /* Input */
+	    displayPanel.add(new Label("Input"));
+	    taInput = new TextArea("", 5, 50); 
 	    taInput.setEditable(true);       
 	    displayPanel.add(taInput); 
 	    
