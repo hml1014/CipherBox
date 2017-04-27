@@ -12,15 +12,15 @@ public class CipherBox extends Frame implements ActionListener {
 	private Decoder d;
 	
 	public CipherBox() {
-		/* Set up layout for the cipher box gui */
-		Panel displayPanel = new Panel(new FlowLayout());
-		Panel outPanel = new Panel(new FlowLayout());
-		Panel buttonPanel = new Panel(new FlowLayout());
-		setLayout(new FlowLayout());
+	    /* Set up layout for the cipher box gui */
+	    Panel displayPanel = new Panel(new FlowLayout());
+	    Panel outPanel = new Panel(new FlowLayout());
+	    Panel buttonPanel = new Panel(new FlowLayout());
+	    setLayout(new FlowLayout());
 		
-		/* Input */
-		displayPanel.add(new Label("Input"));
-		taInput = new TextArea("", 5, 50); 
+	    /* Input */
+	    displayPanel.add(new Label("Input"));
+	    taInput = new TextArea("", 5, 50); 
 	    taInput.setEditable(true);       
 	    displayPanel.add(taInput); 
 	    
@@ -38,7 +38,7 @@ public class CipherBox extends Frame implements ActionListener {
 	    
 	    /* Output */
 	    outPanel.add(new Label("Output"));
-		taOutput = new TextArea("", 5, 50); 
+	    taOutput = new TextArea("", 5, 50); 
 	    taOutput.setEditable(false);       
 	    outPanel.add(taOutput);
 	    
@@ -68,7 +68,7 @@ public class CipherBox extends Frame implements ActionListener {
 	    /* Add Action Listeners to the box */
 	    encode.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent evt) {
-	        	d = new Decoder();
+	            d = new Decoder();
 	            String input = taInput.getText();
 	            boolean valid = d.validateLetters(input);
 	            String selection = list.getSelectedItem();
@@ -197,10 +197,7 @@ public class CipherBox extends Frame implements ActionListener {
 		            }else {
 		            	taOutput.setText("Invalid input: must only contain letters and spaces"); 
 		            } 
-	            }
-	            
-	            
-	            
+	            } 
 	         }
 	    });
 	    
