@@ -4,9 +4,19 @@ import java.util.LinkedList;
 
 public class Decoder {
 	private String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m",
-			                         "n","o","p","q","r","s","t","u","v","w","x","y","z"};
+			                     "n","o","p","q","r","s","t","u","v","w","x","y","z"};
+	private String[][] vSquare = new String[26][26];
 
-	public Decoder(){}
+	public Decoder(){
+		for (int i=0;i<vSquare.length;i++){
+			int t=i;
+			for (int j=0;j<vSquare[i].length;j++){
+				vSquare[i][j] = alphabet[t];
+				t++;
+				if (t==26) t=0;
+			}
+		}
+	}
 	
 	/*
 	 * This method accepts a letter as string s and returns
@@ -188,9 +198,9 @@ public class Decoder {
 		return n;
 	}
 	
-	public String encodeRailfence(String input, int rail){
+	public String encodeRailfence(String s, int rail){
 		String n="";
-		String c[] = input.split("(?!^)");
+		String c[] = s.split("(?!^)");
 		LinkedList<String> rf[] = new LinkedList[rail];
 		
 		for (int i=0;i<rail;i++){
@@ -223,9 +233,9 @@ public class Decoder {
 		return n;
 	}
 	
-	public String decodeRailfence(String input, int rail){
+	public String decodeRailfence(String s, int rail){
 		String n="";
-		String c[] = input.split("(?!^)");
+		String c[] = s.split("(?!^)");
 		LinkedList<String> rf[] = new LinkedList[rail];
 		
 		for (int i=0;i<rail;i++){
@@ -275,6 +285,55 @@ public class Decoder {
 			if (track2==rail-1) increase2 = false;
 		}
 		
+		return n;
+	}
+	
+	public String encodeVigenere(String s, String key){
+		String n ="";
+		String[] c = s.split("\\s");
+		String[] k = key.split("(?!^)");
+		int t=0;
+		for (int i=0;i<c.length;i++){
+			String temp =c[i];
+			if (!temp.equals("")){
+				String[] c2 = temp.split("(?!^)");
+				for (int j=0;j<c2.length;j++){
+					int m = findPlace(c2[j]);
+					int m2 = findPlace(k[t]);
+					n+= vSquare[m][m2];
+					if (t == k.length-1) t=0;
+					else t++;
+				}
+			}
+			
+			if (i != c.length-1) n+= " ";
+		}
+		return n;
+	}
+	
+	public String decodeVigenere(String s, String key){
+		String n ="";
+		String[] c = s.split("\\s");
+		String[] k = key.split("(?!^)");
+		int t=0;
+		for (int i=0;i<c.length;i++){
+			String temp =c[i];
+			if (!temp.equals("")){
+				String[] c2 = temp.split("(?!^)");
+				for (int j=0;j<c2.length;j++){
+					int m = findPlace(k[t]);
+					int r=0;
+					for (int l=0;l<26;l++){
+						if (c2[j].equals(vSquare[l][m])) r=l;
+					}
+					n += alphabet[r];
+					if (t == k.length-1) t=0;
+					else t++;
+				}
+			}
+			
+			if (i != c.length-1) n+= " ";
+		}
 		return n;
 	}
 }
