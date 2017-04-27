@@ -12,15 +12,15 @@ public class CipherBox extends Frame implements ActionListener {
 	private Decoder d;
 	
 	public CipherBox() {
-	    /* Set up layout for the cipher box gui */
-	    Panel displayPanel = new Panel(new FlowLayout());
-	    Panel outPanel = new Panel(new FlowLayout());
-	    Panel buttonPanel = new Panel(new FlowLayout());
-	    setLayout(new FlowLayout());
+		/* Set up layout for the cipher box gui */
+		Panel displayPanel = new Panel(new FlowLayout());
+		Panel outPanel = new Panel(new FlowLayout());
+		Panel buttonPanel = new Panel(new FlowLayout());
+		setLayout(new FlowLayout());
 		
-	    /* Input */
-	    displayPanel.add(new Label("Input"));
-	    taInput = new TextArea("", 5, 50); 
+		/* Input */
+		displayPanel.add(new Label("Input"));
+		taInput = new TextArea("", 5, 50); 
 	    taInput.setEditable(true);       
 	    displayPanel.add(taInput); 
 	    
@@ -50,6 +50,7 @@ public class CipherBox extends Frame implements ActionListener {
 	    list.add("Caesar");
 	    list.add("Railfence");
 	    list.add("Rot13");
+	    list.add("Vigenere");
 	    list.select(0);
 	    buttonPanel.add(list);
 	    
@@ -113,6 +114,11 @@ public class CipherBox extends Frame implements ActionListener {
 	            			}else output = "Invalid key: must be a positive integer.";
 	            			break;
 	            		case "Rot13": output = d.caesar(input, 13, true);
+	            			break;
+	            		case "Vigenere": 
+	            			String k = key.getText();
+	            			if (k.matches("^[a-zA-Z]+$")) output = d.encodeVigenere(input,k);
+	            			else output = "Invalid key: must be letters only.";
 	            			break;
 	            	}
 	            	
@@ -180,6 +186,11 @@ public class CipherBox extends Frame implements ActionListener {
 		            			break;
 		            		case "Rot13": output = d.caesar(input, 13, false);
 	            				break;
+		            		case "Vigenere": 
+		            			String k = key.getText();
+		            			if (k.matches("^[a-zA-Z]+$")) output = d.decodeVigenere(input,k);
+		            			else output = "Invalid key: must be letters only.";
+		            			break;
 		            	}
 		            	
 		            	taOutput.setText(output); 
