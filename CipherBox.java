@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class CipherBox extends Frame implements ActionListener {
+	private static final long serialVersionUID = 1L;
 	private TextArea taInput, taOutput;
 	private Button encode, decode;
 	private Label lkey, lkey2;
