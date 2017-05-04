@@ -41,6 +41,15 @@ Example:
 
 4 – Autokey
 
+The Autokey cipher is almost exactly like the Vigenere cipher, but instead of simply cycling the keyword over and over, it uses the key once and then starts using the message itself as the key.  (For more details, see Vigenere)
+
+Example:
+
+Key = bugs
+Plaintext:	hello world
+Keytext:	bugsh ellow
+Encoded:	iyrdv azczz
+
 
 5 – Caesar
 
