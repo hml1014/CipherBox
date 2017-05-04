@@ -25,3 +25,15 @@ Example:
 	Equation:	5 22 17 17 0 24 0 9 17 19
 	Encoded:	fwrra yajrt
 
+
+3 – Atbash
+
+This is another very simple cipher.  The alphabet is simply reversed in order and each letter is assigned to its reverse, like so:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ZYXWVUTSRQPONMLKJIHGFEDCBA
+	
+Example:
+
+	Plaintext:	hello world
+	Encoded:	svool dliow
