@@ -54,3 +54,22 @@ Example:
 	Shift = 5
 	Plaintext:	hello world
 	Encoded:	mjqqt btwqi
+
+
+6 – Columnar Transposition
+
+
+7 – Railfence
+
+
+8 – Rot13
+
+This cipher is essentially just the Caesar cipher, but it always uses the number 13 as the shift number.  The letter a becomes n, b becomes, o, and so forth like this:
+
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	NOPQRSTUVWXYZABCDEFGHIJKLM
+
+Example:
+
+	Plaintext:	hello world
+	Encoded:	uryyb jbeyq
