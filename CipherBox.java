@@ -87,7 +87,7 @@ public class CipherBox extends Frame  {
 	    /* Add Action Listeners to the box */
 	    encode.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent evt) {
-	        	d = new Decoder();
+	            d = new Decoder();
 	            String input = taInput.getText();
 	            String selection = list.getSelectedItem();
 	            
@@ -166,7 +166,7 @@ public class CipherBox extends Frame  {
 	    
 	    decode.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent evt) {
-	        	d = new Decoder();
+	            d = new Decoder();
 	            String input = taInput.getText();
 	            String selection = list.getSelectedItem();
 	       
