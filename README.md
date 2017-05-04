@@ -58,6 +58,25 @@ Example:
 
 6 – Columnar Transposition
 
+This cipher is a bit different than the ones discussed thus far.  This is a transposition cipher; rather than reassigning each letter to a number or another letter, this cipher simply rearranges the letters in the message.  The letters of the message to be encoded are put in columns based on the length of a key word with all unique letters.  The columns are then rearranged to be in alphabetical order, and each column is written out into the new message.
+
+Example:
+
+	Key = BUGS
+	Plaintext:	hello world
+
+	B U G S
+	h e l l
+	o   w o
+	r l d
+
+	B G S U
+	h l l e
+	o w o
+	r d   l
+
+	Encoded: horlwdloe l
+
 
 7 – Railfence
 
