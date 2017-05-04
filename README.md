@@ -30,8 +30,8 @@ Example:
 
 This is another very simple cipher.  The alphabet is simply reversed in order and each letter is assigned to its reverse, like so:
 
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-ZYXWVUTSRQPONMLKJIHGFEDCBA
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	ZYXWVUTSRQPONMLKJIHGFEDCBA
 	
 Example:
 
