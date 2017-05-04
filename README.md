@@ -118,3 +118,44 @@ Example:
 
 	Plaintext:	hello world
 	Encoded:	itssg vgksr
+
+
+10 – Vigenere
+
+Rather than having each letter of the alphabet be replaced by the same letter like the other substitution ciphers used in this program, the Vigenere cipher uses a key to substitute each letter of the message.  Letters are substituted based on a table called a “Vigenere Square”, like so:
+
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	BCDEFGHIJKLMNOPQRSTUVWXYZA
+	CDEFGHIJKLMNOPQRSTUVWXYZAB
+	DEFGHIJKLMNOPQRSTUVWXYZABC
+	EFGHIJKLMNOPQRSTUVWXYZABCD
+	FGHIJKLMNOPQRSTUVWXYZABCDE
+	GHIJKLMNOPQRSTUVWXYZABCDEF
+	HIJKLMNOPQRSTUVWXYZABCDEFG
+	IJKLMNOPQRSTUVWXYZABCDEFGH
+	JKLMNOPQRSTUVWXYZABCDEFGHI
+	KLMNOPQRSTUVWXYZABCDEFGHIJ
+	LMNOPQRSTUVWXYZABCDEFGHIJK
+	MNOPQRSTUVWXYZABCDEFGHIJKL
+	NOPQRSTUVWXYZABCDEFGHIJKLM
+	OPQRSTUVWXYZABCDEFGHIJKLMN
+	PQRSTUVWXYZABCDEFGHIJKLMNO
+	QRSTUVWXYZABCDEFGHIJKLMNOP
+	RSTUVWXYZABCDEFGHIJKLMNOPQ
+	STUVWXYZABCDEFGHIJKLMNOPQR
+	TUVWXYZABCDEFGHIJKLMNOPQRS
+	UVWXYZABCDEFGHIJKLMNOPQRST
+	VWXYZABCDEFGHIJKLMNOPQRSTU
+	WXYZABCDEFGHIJKLMNOPQRSTUV
+	XYZABCDEFGHIJKLMNOPQRSTUVW
+	YZABCDEFGHIJKLMNOPQRSTUVWX
+	ZABCDEFGHIJKLMNOPQRSTUVWXY
+
+To encode a message, each letter of the message is found in the first column and each letter of the key (which is cycled over and over for the duration of the message) is found in the first row.  To find the new letter, one simply finds where the row and column meet.
+
+Example:
+
+	Key = bugs
+	Plaintext:	hello world
+	Keytext:	bugsb ugsbu
+	Encoded:	iyrdp qujmx
