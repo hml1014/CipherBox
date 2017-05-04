@@ -37,3 +37,20 @@ Example:
 
 	Plaintext:	hello world
 	Encoded:	svool dliow
+
+
+4 – Autokey
+
+
+5 – Caesar
+
+The Caesar cipher “shifts” the alphabet down a number of places based on a number key, and reassigns each letter to the shifted letter, for example, if the key was 2, then a would become c, b would become d, and so forth like this:
+
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	CDEFGHIJKLMNOPQRSTUVWXYZAB
+
+Example:
+
+	Shift = 5
+	Plaintext:	hello world
+	Encoded:	mjqqt btwqi
