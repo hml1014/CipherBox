@@ -105,3 +105,16 @@ Example:
 
 	Plaintext:	hello world
 	Encoded:	uryyb jbeyq
+
+
+9 – Simple Substitution
+
+The Simple Substitution cipher is a very straightforward cipher.  Each letter of the alphabet is substituted with a character from a custom alphabet.  Here the alphabet will simply be jumbled up by how letters are organized on the keyboard, like so:
+
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	QWERTYUIOPASDFGHJKLZXCVBNM
+
+Example:
+
+	Plaintext:	hello world
+	Encoded:	itssg vgksr
