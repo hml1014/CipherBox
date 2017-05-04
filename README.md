@@ -61,7 +61,7 @@ Example:
 
 7 – Railfence
 
-This is another transposition cipher.  This one uses a number key and rearranges the letters in a “zig-zag” pattern across a number of rows based on the key.
+This is another transposition cipher.  This one uses a number key and rearranges the letters in a “zig-zag” pattern across a number of rows based on the key.  It then rearranges the original message by taking all the letters in each row in ascending order.
 
 Example:
 
