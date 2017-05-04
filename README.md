@@ -61,6 +61,19 @@ Example:
 
 7 – Railfence
 
+This is another transposition cipher.  This one uses a number key and rearranges the letters in a “zig-zag” pattern across a number of rows based on the key.
+
+Example:
+
+	Rail = 3
+	Plaintext:	hello world
+
+	1-h---o---r--
+	2--e-l- -o-l-
+	3---l---w---d
+
+	Encoded: 	horel ollwd
+
 
 8 – Rot13
 
