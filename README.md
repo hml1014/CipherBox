@@ -45,10 +45,10 @@ The Autokey cipher is almost exactly like the Vigenere cipher, but instead of si
 
 Example:
 
-Key = bugs
-Plaintext:	hello world
-Keytext:	bugsh ellow
-Encoded:	iyrdv azczz
+	Key = bugs
+	Plaintext:	hello world
+	Keytext:	bugsh ellow
+	Encoded:	iyrdv azczz
 
 
 5 – Caesar
