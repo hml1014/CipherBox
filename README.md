@@ -75,7 +75,7 @@ Example:
 	o w o
 	r d   l
 
-	Encoded: horlwdloe l
+	Encoded: 	horlwdloe l
 
 
 7 – Railfence
