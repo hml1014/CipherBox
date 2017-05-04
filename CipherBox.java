@@ -1,9 +1,16 @@
 package ciphers;
 
+/*
+ * This class creates the GUI used for inputting
+ * text and keys to be decoded or encoded, along
+ * with a selection list of different ciphers
+ * to choose from.
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 
-public class CipherBox extends Frame implements ActionListener {
+public class CipherBox extends Frame  {
 	private static final long serialVersionUID = 1L;
 	private TextArea taInput, taOutput;
 	private Button encode, decode;
@@ -12,30 +19,33 @@ public class CipherBox extends Frame implements ActionListener {
 	private List list;
 	private Decoder d;
 	
+	/*
+	 * This method creates the CipherBox GUI.
+	 */
 	public CipherBox() {
 	    /* Set up layout for the cipher box gui */
-	    Panel displayPanel = new Panel(new FlowLayout());
+	    Panel inputPanel = new Panel(new FlowLayout());
+	    Panel keyPanel = new Panel(new FlowLayout());
 	    Panel outPanel = new Panel(new FlowLayout());
 	    Panel buttonPanel = new Panel(new FlowLayout());
-	    setLayout(new FlowLayout());
 		
 	    /* Input */
-	    displayPanel.add(new Label("Input"));
+	    inputPanel.add(new Label("Input   "));
 	    taInput = new TextArea("", 5, 50); 
 	    taInput.setEditable(true);       
-	    displayPanel.add(taInput); 
+	    inputPanel.add(taInput); 
 	    
 	    lkey = new Label("Key");
 	    key = new TextField("", 10);
 	    key.setEditable(true);
-	    displayPanel.add(lkey);
-	    displayPanel.add(key);
+	    keyPanel.add(lkey);
+	    keyPanel.add(key);
 	    
 	    lkey2 = new Label("Key 2");
 	    key2 = new TextField("", 10);
 	    key2.setEditable(true);
-	    displayPanel.add(lkey2);
-	    displayPanel.add(key2);
+	    keyPanel.add(lkey2);
+	    keyPanel.add(key2);
 	    
 	    /* Output */
 	    outPanel.add(new Label("Output"));
@@ -48,9 +58,12 @@ public class CipherBox extends Frame implements ActionListener {
 	    list.add("A1Z26");
 	    list.add("Affine");
 	    list.add("Atbash");
+	    list.add("Autokey");
 	    list.add("Caesar");
+	    list.add("Columnar Transposition");
 	    list.add("Railfence");
 	    list.add("Rot13");
+	    list.add("Simple Substitution");
 	    list.add("Vigenere");
 	    list.select(0);
 	    buttonPanel.add(list);
@@ -61,20 +74,24 @@ public class CipherBox extends Frame implements ActionListener {
 	    decode = new Button("Decode");
 	    buttonPanel.add(decode);
 	    
-	    setLayout(new BorderLayout());  
-	    add(displayPanel, BorderLayout.NORTH);
-	    add(outPanel, BorderLayout.CENTER);
-	    add(buttonPanel, BorderLayout.SOUTH);
+	    setLayout(new GridLayout(4,1,3,3));  
+	    add(inputPanel);
+	    add(keyPanel);
+	    add(outPanel);
+	    add(buttonPanel);
+	    
+	    setTitle("Cipher Decoder");
+	    setSize(500, 450);
+	    setVisible(true);
 	    
 	    /* Add Action Listeners to the box */
 	    encode.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent evt) {
-	            d = new Decoder();
+	        	d = new Decoder();
 	            String input = taInput.getText();
-	            boolean valid = d.validateLetters(input);
 	            String selection = list.getSelectedItem();
 	            
-	            if (valid==true){
+	            if (input.matches("^[A-Za-z\\s]+$")){
 	            	String output="";
 	            	
 	            	switch (selection){
@@ -97,6 +114,11 @@ public class CipherBox extends Frame implements ActionListener {
 	            			break;
 	            		case "Atbash": output = d.atbash(input);
 	            			break;
+	            		case "Autokey":
+	            			String k1 = key.getText();
+	            			if (k1.matches("^[a-zA-Z]+$")) output = d.encodeAutokey(input,k1);
+	            			else output = "Invalid key: must be letters only.";
+	            			break;
 	            		case "Caesar": 
 	            			String shift = key.getText();
 	            			if (shift.matches("\\d+")){
@@ -105,6 +127,12 @@ public class CipherBox extends Frame implements ActionListener {
 	            			}else{
 	            				output = "Invalid key: must be a nonnegative integer.";
 	            			}
+	            			break;
+	            		case "Columnar Transposition":
+	            			String ctkey = key.getText();
+	            			boolean ctv = d.validateLetters(ctkey);
+	            			if (ctv) output = d.encodeColumnarTran(input,ctkey);
+	            			else output = "Invalid key: must contain all unique letters.";
 	            			break;
 	            		case "Railfence": 
 	            			String r = key.getText();
@@ -115,6 +143,12 @@ public class CipherBox extends Frame implements ActionListener {
 	            			}else output = "Invalid key: must be a positive integer.";
 	            			break;
 	            		case "Rot13": output = d.caesar(input, 13, true);
+	            			break;
+	            		case "Simple Substitution":
+	            			String sub = key.getText();
+	            			if (sub.matches("^[a-zA-Z]+$") && sub.length() == 26){
+	            				output = d.simpleSubstitution(input,sub,true);
+	            			}else output = "Invalid key: must be 26 letters.";
 	            			break;
 	            		case "Vigenere": 
 	            			String k = key.getText();
@@ -145,14 +179,10 @@ public class CipherBox extends Frame implements ActionListener {
 		            	taOutput.setText("Invalid input: must only contain numbers 1-26, hyphens, and spaces"); 
 		            }
 	            }else{
-	            	boolean valid = d.validateLetters(input);
-	            	
-	            	if (valid==true){
+	            	if (input.matches("^[A-Za-z\\s]+$")){
 		            	String output="";
 		            	
 		            	switch (selection){
-		            		case "Atbash": output = d.atbash(input);
-		            			break;
 		            		case "Affine":
 		            			String key01 = key.getText();
 		            			String key02 = key2.getText();
@@ -168,6 +198,13 @@ public class CipherBox extends Frame implements ActionListener {
 		            				output = "Invalid key(s): both must be a positive integer.";
 		            			}
 		            			break;
+		            		case "Atbash": output = d.atbash(input);
+	            				break;
+		            		case "Autokey":
+		            			String k1 = key.getText();
+		            			if (k1.matches("^[a-zA-Z]+$")) output = d.decodeAutokey(input,k1);
+		            			else output = "Invalid key: must be letters only.";
+		            			break;
 		            		case "Caesar": 
 		            			String shift = key.getText();
 		            			if (shift.matches("\\d+")){
@@ -176,6 +213,12 @@ public class CipherBox extends Frame implements ActionListener {
 		            			}else{
 		            				taOutput.setText("Invalid key, must be a nonnegative integer.");
 		            			}
+		            			break;
+		            		case "Columnar Transposition":
+		            			String ctkey = key.getText();
+		            			boolean ctv = d.validateLetters(ctkey);
+		            			if (ctv) output = d.decodeColumnarTran(input,ctkey);
+		            			else output = "Invalid key: must contain all unique letters.";
 		            			break;
 		            		case "Railfence": 
 		            			String r = key.getText();
@@ -187,6 +230,12 @@ public class CipherBox extends Frame implements ActionListener {
 		            			break;
 		            		case "Rot13": output = d.caesar(input, 13, false);
 	            				break;
+		            		case "Simple Substitution":
+		            			String sub = key.getText();
+		            			if (sub.matches("^[a-zA-Z]+$") && sub.length() == 26){
+		            				output = d.simpleSubstitution(input,sub,false);
+		            			}else output = "Invalid key: must be 26 letters.";
+		            			break;
 		            		case "Vigenere": 
 		            			String k = key.getText();
 		            			if (k.matches("^[a-zA-Z]+$")) output = d.decodeVigenere(input,k);
@@ -207,14 +256,5 @@ public class CipherBox extends Frame implements ActionListener {
 	            System.exit(0);  
 	         }
 	    });
-	      
-	    setTitle("Cipher Decoder");
-	    setSize(750, 400);
-	    setVisible(true);
 	}
-	
-	public void actionPerformed(ActionEvent evt) {
-		// TODO Auto-generated method stub
-	}
-
 }
